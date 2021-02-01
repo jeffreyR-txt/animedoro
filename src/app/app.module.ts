@@ -1,3 +1,5 @@
+import { ToastComponent } from './shared/toast/toast.component';
+import { NotificationService } from './shared/_services/notification.service';
 import { TimePipe } from './shared/pipes/time.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,7 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
 import { CountdownModule } from 'ngx-countdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,15 +23,16 @@ import { FormsModule } from '@angular/forms';
     RegisterComponent,
     AccountComponent,
     TimePipe,
-
+    ToastComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CountdownModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

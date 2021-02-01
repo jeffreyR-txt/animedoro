@@ -15,12 +15,14 @@ export class HomeComponent implements OnInit {
   public sliderTime: number;
   public workLogs: Array<WorkLog>;
   public isCounting: boolean;
+  public timerType: string;
   @ViewChild('cd', { static: false }) private countdown: CountdownComponent;
   constructor() {}
 
   ngOnInit(): void {
     this.isCounting = false;
     this.sliderTime = 30;
+    this.timerType = "work"
     this.cdOptionsInit();
     this.loadLogs();
   }
@@ -69,7 +71,7 @@ export class HomeComponent implements OnInit {
   addLog() {
     let log = {
       date: new Date(),
-      cycleType: 'Work',
+      cycleType: this.timerType,
       // timeLength: this.sliderTime * 60 - this.countDownOptions.leftTime,
       timeLength: (this.sliderTime *60 * 1000) - this.countdown.left,
     };

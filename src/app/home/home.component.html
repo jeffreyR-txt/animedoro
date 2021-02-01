@@ -1,81 +1,108 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 offset-md-3">
-      <h1>Timer placeholder</h1>
+    <div class="col-12 justify-content-center d-flex">
       <!-- template for imported countdown module -->
-      <countdown #cd [config]="countDownOptions"></countdown>
+      <h1 class="display-1 justify-content-center d-flex">
+        <countdown class="w-100" #cd [config]="countDownOptions"></countdown>
+      </h1>
     </div>
   </div>
-
+  <hr />
   <div class="row">
-    <!-- timer controls -->
-    <div class="col-sm-12 col-md-5">
-      <p>Controls</p>
-      <div class="row">
-        <div class="col-4">
-          <button
-            type="button"
-            class="btn btn-danger w-100"
-            (click)="stopTimer()"
-          >
-            End
-          </button>
-        </div>
-        <div class="col-4">
-          <button
-            type="button"
-            class="btn btn-warning w-100"
-            (click)="pauseTimer()"
-          >
-            Pause
-          </button>
-        </div>
-        <div class="col-4">
-          <button
-            type="button"
-            class="btn btn-primary w-100"
-            (click)="resumeTimer()"
-          >
-            Resume
-          </button>
-        </div>
-        <!-- minute input -->
-        <div class="col-12 mt-2">
-          <span class="d-block mb-2">
-            <label for="formControlRange">Minutes: {{ sliderTime }}</label>
-          </span>
+    <div class="col-md-12 col-lg-6 offset-lg-3">
+      <!-- timer controls -->
+      <div class="col-sm-12 col-md-12 height-300px">
+        <h3 class="display-6">Controls</h3>
+        <div class="row">
+          <div class="col-4">
+            <button
+              type="button"
+              class="btn btn-danger w-100"
+              (click)="stopTimer()"
+            >
+              End
+            </button>
+          </div>
+          <div class="col-4">
+            <button
+              type="button"
+              class="btn btn-warning w-100"
+              (click)="pauseTimer()"
+            >
+              Pause
+            </button>
+          </div>
+          <div class="col-4">
+            <button
+              type="button"
+              class="btn btn-primary w-100"
+              (click)="resumeTimer()"
+            >
+              Resume
+            </button>
+          </div>
+          <!-- minute input -->
+          <div class="col-12 mt-2">
+            <span class="d-block mb-2">
+              <label for="formControlRange">Minutes: {{ sliderTime }}</label>
+            </span>
 
-          <input
-            type="range"
-            min="1"
-            max="60"
-            class="form-control-range w-100"
-            id="formControlRange"
-            [(ngModel)]="sliderTime"
-            [disabled]="isCounting"
-          />
-        </div>
+            <input
+              type="range"
+              min="1"
+              max="60"
+              class="form-control-range w-100"
+              id="formControlRange"
+              [(ngModel)]="sliderTime"
+              [disabled]="isCounting"
+            />
+          </div>
 
-        <!-- start button -->
-        <div class="col-12 mt-2">
-          <button
-            type="button"
-            class="btn btn-success btn-block w-100"
-            (click)="startTimer()"
-          >
-            Start
-          </button>
+          <div class="input-group mb-3 mt-2 w-100">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01"
+                >Type</label
+              >
+            </div>
+            <select
+              [(ngModel)]="timerType"
+              class="custom-select w-75"
+              id="inputGroupSelect01"
+            >
+              <option value="anime">Anime</option>
+              <option value="work" selected>Work</option>
+            </select>
+          </div>
+
+          <!-- start button -->
+          <div class="col-12 mt-2">
+            <button
+              type="button"
+              class="btn btn-success btn-block w-100"
+              (click)="startTimer()"
+            >
+              Start
+            </button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- productivity logs -->
-    <div class="col-sm-12 col-md-7" >
-      
-      logs place holder
-    <div *ngFor="let log of workLogs; let i = index">
-<p>{{i + 1}}. Date: {{log.date | date}} session length: {{log.timeLength | timePipe}}</p>
-    </div >
+      <!-- productivity logs -->
+      <h3 class="display-6">Productivity Log</h3>
+      <div class="col-sm-12 col-md-12 d-flex justify-content-center flex-wrap height-300px overflow-auto flex-row">
+        
+        <div
+          class="d-flex flex-column  overflow-auto w-100"
+          *ngFor="let log of workLogs; let i = index"
+        >
+          <div class="card mt-1">
+            <div class="card-body">
+              {{ i + 1 }}. Date: {{ log.date | date: "short" }} session length:
+              {{ log.timeLength | timePipe }} type: {{ log.cycleType }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
